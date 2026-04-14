@@ -79,3 +79,17 @@ def edit_todo_page(request: Request, id: int, db:SessionDep, user:AuthDep):
             "todos": todos
         }
     )
+
+@todo_router.get('/userTodo')
+def user_todo(request: Request, db: SessionDep, user: AuthDep):
+
+    user_todos = db.exec(select(Todo).where(Todo.user_id == user.id)).all()
+    
+    return templates.TemplateResponse(
+        request=request,
+        name="user_todo.html",
+        context={
+            "current_user": user,
+            "user_todos": user_todos
+        }
+    )

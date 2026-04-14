@@ -13,15 +13,10 @@
   <link rel="icon" type="image/x-icon" href="{{ url_for('static', path='img/favicon.ico')}}">
 
   <title>{% block title %}{% endblock %}</title>
-  <style>
-    {
-      % block styles %
-    }
+  
 
-      {
-      % endblock %
-    }
 
+    <style>
     #alert {
       width: 80vw;
       height: 50px;
@@ -42,12 +37,17 @@
     }
   </style>
 
+    {% block styles %}
+
+    {% endblock %}
+
 </head>
 
 <body>
   <nav class="blue">
     <div class="nav-wrapper">
       <a href="#!" class="brand-logo center">{% block page %}{% endblock %}</a>
+      <a href="/userTodo" class="user-todo">Todos</a>
       {% block link %}{% endblock %}
     </div>
   </nav>
